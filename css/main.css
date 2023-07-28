@@ -233,7 +233,7 @@ body {
   border: none;
   font-size: 16px;
   cursor: pointer;
-  color: red;
+  color: #000000;
 }
 .header__btn::before {
   background-color: #d8a600;
@@ -342,7 +342,7 @@ body {
   border: none;
   background-color: #ffc300;
   cursor: pointer;
-  color: black;
+  color: #000000;
 }
 .bestseller__card-info-btn::before {
   background-color: #d8a600;
@@ -394,6 +394,7 @@ body {
   background-color: #ffc300;
   border: none;
   cursor: pointer;
+  color: #000000;
 }
 .discount__box-btn::before {
   background-color: #d8a600;

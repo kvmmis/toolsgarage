@@ -206,7 +206,7 @@ body {
 		border: none;
 		font-size: 16px;
 		cursor: pointer;
-		color: red;
+		color: $black;
 
 		&::before {
 			background-color: $second-color;
@@ -332,7 +332,7 @@ body {
 				border: none;
 				background-color: $main-color;
 				cursor: pointer;
-				color: black;
+				color: $black;
 
 				&::before {
 					background-color: $second-color;
@@ -394,6 +394,7 @@ body {
 			background-color: $main-color;
 			border: none;
 			cursor: pointer;
+			color: $black;
 
 			&::before {
 				background-color: $second-color;
