@@ -1,0 +1,544 @@
+@import './colors';
+@import './components';
+@import './mixins';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%; // 10px REM
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.6rem;
+}
+
+//NAVIGATION
+
+.burger-btn {
+	position: fixed;
+	right: 10px;
+	padding: 18px;
+	background: none;
+	border: 1px solid transparent;
+	cursor: pointer;
+	z-index: 100;
+	display: block;
+
+	&:focus {
+		outline: none;
+		border: 1px solid rgba(255, 255, 255, 0.5);
+		border-radius: 8px;
+	}
+
+	&:hover {
+		.burger-btn__bars::after,
+		.burger-btn__bars::before {
+			width: 100%;
+		}
+	}
+
+	&__box {
+		position: relative;
+		width: 40px;
+		height: 40px;
+	}
+
+	&__bars,
+	&__bars::after,
+	&__bars::before {
+		position: absolute;
+		top: 5px;
+		right: 0;
+		height: 3px;
+		content: '';
+		background-color: $pure-white;
+		transition: width 0.3s;
+	}
+
+	&__bars {
+		width: 100%;
+
+		&::after {
+			top: 13px;
+			width: 60%;
+		}
+
+		&::before {
+			top: 27px;
+			width: 30%;
+		}
+	}
+}
+
+.navbar {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 80px;
+	background-color: $dark;
+	z-index: 10;
+	transition: 0.6s;
+
+	&__items {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: absolute;
+		top: 80px;
+		right: 0;
+		width: 100%;
+		height: calc(100vh - 80px);
+		transform: translateX(100%);
+		background-color: $dark;
+		opacity: 0;
+		transition: transform 0.5s, opacity 0.5s;
+		overflow: auto;
+
+		&--active {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
+
+	&__nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 80px;
+	}
+
+	&__item {
+		position: relative;
+		display: block;
+		margin: 0.5em 0;
+		padding: 10px 20px;
+		font-size: 2.8rem;
+		text-decoration: none;
+		color: $pure-white;
+		text-transform: uppercase;
+	}
+
+	&__item,
+	&__item::after,
+	&__item::before {
+		transition: 0.3s;
+	}
+
+	&__item::before,
+	&__item::after {
+		content: '';
+		position: absolute;
+		width: 0;
+		bottom: 0;
+		border-bottom: 2px solid $main-color;
+	}
+
+	&__item::before {
+		right: 50%;
+	}
+
+	&__item::after {
+		left: 50%;
+	}
+
+	&__item:hover::before,
+	&__item:hover::after {
+		width: 50%;
+	}
+
+	&__logo {
+		display: block;
+		font-family: 'Tektur', cursive;
+		font-size: 22px;
+		color: white;
+		text-transform: uppercase;
+		text-decoration: none;
+		transition: 0.3s;
+
+		&:hover {
+			color: $main-color;
+		}
+	}
+}
+
+.fa-solid {
+	padding: 0 10px;
+}
+
+// HEADER
+.header {
+	position: relative;
+	top: 80px;
+	width: 100%;
+	height: 80vh;
+	background-color: $dark;
+
+	&__box {
+		display: flex;
+		flex-direction: column;
+		color: white;
+	}
+
+	&__img {
+		width: 100%;
+	}
+
+	&__title {
+		display: flex;
+		flex-direction: column;
+		margin: 0.3em 0;
+		font-size: 32px;
+		font-weight: bold;
+	}
+
+	&__btn {
+		width: 200px;
+		height: 50px;
+		background-color: $main-color;
+		border: none;
+		font-size: 16px;
+		cursor: pointer;
+
+		&::before {
+			background-color: $second-color;
+		}
+	}
+}
+
+//BESTSELLER
+.bestseller {
+	&__card {
+		position: relative;
+		margin: 1em 0;
+		height: 450px;
+		color: $pure-white;
+		text-align: center;
+		perspective: 1000px;
+
+		&:hover {
+			.bestseller__card-img {
+				transform: rotateY(-180deg);
+				opacity: 0;
+			}
+			.bestseller__card-info {
+				transform: rotateY(0);
+				opacity: 1;
+			}
+		}
+
+		&-img {
+			padding: 2em;
+			height: 100%;
+			border-radius: 8px;
+			background-size: cover;
+			transition: transform 1s, opacity 1s;
+
+			&--first {
+				background-image: $dark-gradient, url('../img/Dewalt\ D21570K.jpg');
+			}
+
+			&--second {
+				background-image: $dark-gradient, url('../img/Dewalt\ DCS576N.jpg');
+				background-position: 30%;
+			}
+
+			&--third {
+				background-image: $dark-gradient, url('../img/Dewalt\ DCD796P1.jpg');
+				background-position: 20%;
+			}
+
+			&--four {
+				background-image: $dark-gradient, url('../img/Dewalt\ DCS331N.webp');
+				background-position: 30%;
+			}
+
+			&--five {
+				background-image: $dark-gradient, url('../img/Dewalt\ DHS780N.jpg');
+				background-position: 40%;
+			}
+
+			&--six {
+				background-image: $dark-gradient, url('../img/Dewalt\ DCK266P2T.jpg');
+				background-position: 50%;
+			}
+
+			&-title {
+				font-style: 2.8rem;
+			}
+
+			&-info {
+				position: absolute;
+				bottom: 30px;
+				right: 30px;
+				font-size: 1.8rem;
+
+				i {
+					margin-right: 0.3em;
+				}
+			}
+		}
+
+		&-info {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			background-image: $light-dark-gradient-solid;
+			border-radius: 8px;
+			opacity: 0;
+			transform: rotateY(180deg);
+			transition: transform 1s, opacity 1s;
+
+			&-title {
+				@include bestsellerCardStyles;
+				top: 1.2em;
+				font-style: 2.8rem;
+			}
+
+			&-list {
+				margin: 0 auto;
+				width: 70%;
+				list-style: none;
+
+				&-item {
+					padding: 1em;
+					font-size: 1.4rem;
+					border-bottom: 1px solid $light-white;
+
+					&:last-child {
+						border-bottom: none;
+					}
+				}
+			}
+
+			&-btn {
+				@include bestsellerCardStyles;
+				bottom: 2em;
+				padding: 1em;
+				width: 80%;
+				border: none;
+				background-color: $main-color;
+				cursor: pointer;
+
+				&::before {
+					background-color: $second-color;
+				}
+			}
+		}
+	}
+}
+
+// DISCOUNT SECTION
+
+.discount {
+	position: relative;
+	height: 500px;
+	background-image: url(../img/construction-worker-g3ba9e4394_1920.jpg);
+	background-size: cover;
+	z-index: 0;
+
+	&::before {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		content: '';
+		background-image: $dark-gradient;
+		z-index: -1;
+	}
+
+	&__box {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		&-title {
+			padding: 20px 0;
+			color: $pure-white;
+			font-size: 36px;
+			font-weight: 700;
+			text-align: center;
+		}
+
+		&-text {
+			color: $pure-white;
+			font-size: 28px;
+			text-align: center;
+		}
+
+		&-email {
+			width: 300px;
+			height: 40px;
+			padding: 0 10px;
+			margin: 40px 0;
+		}
+
+		&-btn {
+			width: 250px;
+			height: 40px;
+			font-size: 1.4rem;
+			background-color: $main-color;
+			border: none;
+			cursor: pointer;
+
+			&::before {
+				background-color: $second-color;
+			}
+		}
+	}
+}
+
+///////////////
+/// MEDIA	///
+//////////	///
+
+@media (max-width: 576px) {
+	.header {
+		position: relative;
+	}
+}
+@media (min-width: 576px) {
+	.header {
+		position: relative;
+		height: 100%;
+
+		&__box {
+			flex-direction: row;
+			justify-content: space-between;
+		}
+
+		&__box-img {
+			overflow: hidden;
+		}
+
+		&__img {
+			position: relative;
+			left: -80px;
+			width: 140%;
+			height: 100%;
+		}
+
+		&__box-text {
+			width: 50%;
+			margin: 0 1em;
+		}
+
+		&__title {
+			font-size: 30px;
+			font-weight: bold;
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.navbar {
+		&__logo {
+			font-size: 28px;
+		}
+	}
+
+	.header {
+		&__title {
+			font-size: 40px;
+			margin: 0.3em 0;
+		}
+	}
+
+	.bestseller {
+		&__cards {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		&__card {
+			margin: 1em;
+			width: 30%;
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	.navbar {
+		position: sticky;
+		width: 100%;
+		height: 80px;
+		top: 0;
+		background-color: $dark;
+		z-index: 10;
+
+		&__nav {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			height: 80px;
+		}
+
+		&__items {
+			position: relative;
+			display: flex;
+			flex-direction: row;
+			height: 80px;
+			width: auto;
+			top: 0;
+			font-size: 18px;
+			transform: translateX(0);
+			opacity: 1;
+		}
+
+		&__item {
+			position: relative;
+			color: white;
+			text-decoration: none;
+			text-transform: uppercase;
+			padding: 10px 20px;
+			font-size: 20px;
+		}
+
+		&__logo {
+			display: block;
+			font-size: 28px;
+		}
+	}
+
+	.header {
+		position: relative;
+		top: 0;
+
+		&__title {
+			font-size: 60px;
+			margin: 0.3em 0;
+		}
+	}
+
+	.burger-btn {
+		display: none;
+	}
+
+	.discount {
+		background-attachment: fixed;
+		&__box {
+			padding: 100px;
+		}
+	}
+}
+
+@media (min-width: 1100px) {
+	.bestseller {
+		&__card {
+			width: 30%;
+		}
+	}
+}
